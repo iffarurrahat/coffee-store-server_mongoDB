@@ -54,6 +54,14 @@ async function run() {
             res.send(result)
         })
 
+        // single data update data
+        app.get('/coffee/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) }
+            const coffee = await coffeeCollection.findOne(query)
+            res.send(coffee)
+        })
+
 
         // Send a ping to confirm a successful connection
         await client.db("admin").command({ ping: 1 });
